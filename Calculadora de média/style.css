@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+body {
+    font-family: 'Stencil Std, fantasy',monospace;
+    min-height: 400px;
+    background-image: url('https://i.pinimg.com/736x/2f/36/ce/2f36cef13b6351d45d1b99a16f894033.jpg');
+    background-color: #000000;
+    background-size: 100vw;
+    background-position: center ;
+    background-repeat: no-repeat;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .page-title {
+    color:#ffffff;
+    margin: 0 0 5px;
+    font-family: 'DejaVu Sans Mono, monospace';
+  }
+  
+  .page-subtitle {
+    color:#ffffff;
+    margin-top: 5px;
+  }
+  
+  .page-logo {
+    width: 200px;
+  }
+  
+  .alura-logo {
+    width: 40px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  input {
+    margin: 12px;
+    padding: 6px;
+    border-radius: 5px;
+  }
+  
+  label {
+    color: white;
+  }
+  
+  h2{
+    color: white
+  }

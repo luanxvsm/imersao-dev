@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PotterFlix</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">
+          Potterflix
+        </h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-conversor-de-moedas.svg" class="page-logo" alt="">
+        <h2 class="page-title">
+          A saga Harry potter
+        </h2>
+      </div>
+      <a href="https://alura.com.br/" target="_blank">
+        <img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo">
+      </a>
+      <script>
+        var listaFilmes = [
+  "https://ingresso-a.akamaihd.net/img/cinema/cartaz/7766-cartaz.jpg",
+  "https://pm1.narvii.com/6841/c3d8e74a52608b363fd5a903b1dba4f39ea2db6dv2_hq.jpg",
+
+  "https://img.elo7.com.br/product/zoom/2657A05/big-poster-harry-potter-e-o-prisioneiro-de-azkaban-lo2-90x60-geek.jpg",
+  "http://pm1.narvii.com/6348/be155441c659fb71e07e19173fcacee838a729e9_00.jpg",
+
+  "https://3.bp.blogspot.com/-opGIEW-EPGQ/Th5yzek1NbI/AAAAAAAAALw/s69hwlbu68k/s1600/Harry%2BPotter%2Be%2Bo%2BEnigma%2Bdo%2BPr%25C3%25ADncipe.jpg",
+
+  "http://pm1.narvii.com/6858/620ae8fb889c709e8a22ee6f9cee3c6c77ef634av2_00.jpg",
+
+  "https://upload.wikimedia.org/wikipedia/pt/3/3a/Harry_Potter_and_the_Deathly_Hallows_-_Part_2.jpg"
+];
+
+for (var i = 0; i < listaFilmes.length; i++) {
+  document.write("<img src=" + listaFilmes[i] + ">");
+}
+      </script>
+</body>
+</html>

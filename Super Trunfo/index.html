@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Super Trunfo</title>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-super-trunfo.png" class="page-logo" alt="">
+        <h1 class="page-title">Liga da Justiça - A revolta</h1>
+        <button onclick="sortearCarta()" id="btnSortear">Sortear herói</button>
+        <form id="form">
+          <h2>Escolha o seu atributo</h2>
+          <div class="wrapper">
+            <div>
+              <div id="carta-jogador">
+                <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">
+                <h3></h3>
+              </div>
+            </div>
+            <div>
+              <div id="carta-maquina" class="carta"><img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;"></div>
+            </div>
+          </div>
+          <button class="button-jogar" type="button" id="btnJogar" onclick="jogar()" disabled="false">Jogar</button>
+          <div id="resultado"></div>
+        </form>
+      </div>
+      <script>
+        var carta1 = {
+  nome: "Batman",
+  imagem:
+    "https://s3.amazonaws.com/blog.dentrodahistoria.com.br/wp-content/uploads/2021/06/01093346/batman-768x432.png",
+  atributos: {
+    força: 7,
+    inteligência: 10,
+    velocidade: 6
+  }
+};
+
+var carta2 = {
+  nome: "Mulher-Maravilha",
+  imagem:
+    "https://s3.amazonaws.com/blog.dentrodahistoria.com.br/wp-content/uploads/2021/06/01093418/mulher-maravilha-768x432.jpeg",
+  atributos: {
+    força: 8,
+    inteligência: 8,
+    velocidade: 8
+  }
+};
+
+var carta3 = {
+  nome: "Superman",
+  imagem:
+    "https://s3.amazonaws.com/blog.dentrodahistoria.com.br/wp-content/uploads/2021/06/01093433/super-homem-768x432.jpeg",
+  atributos: {
+    força: 10,
+    inteligência: 7,
+    velocidade: 9
+  }
+};
+
+var carta4 = {
+  nome: "Flash",
+  imagem:
+    "https://s3.amazonaws.com/blog.dentrodahistoria.com.br/wp-content/uploads/2021/06/01093445/flash-768x432.jpeg",
+  atributos: {
+    força: 9,
+    inteligência: 8,
+    velocidade: 10
+  }
+};
+
+var carta5 = {
+  nome: "Lanterna-Verde",
+  imagem:
+    "https://s3.amazonaws.com/blog.dentrodahistoria.com.br/wp-content/uploads/2021/06/01093726/lanterna-verde-768x432.jpg",
+  atributos: {
+    força: 7,
+    inteligência: 8,
+    velocidade: 7
+  }
+};
+
+var carta6 = {
+  nome: "Aquaman",
+  imagem:
+    "https://s3.amazonaws.com/blog.dentrodahistoria.com.br/wp-content/uploads/2021/06/01093758/aquaman-768x432.jpeg",
+  atributos: {
+    força: 8,
+    inteligência: 6,
+    velocidade: 7
+  }
+};
+
+var cartas = [carta1, carta2, carta3, carta4, carta5, carta6];
+var cartaMaquina;
+var cartaJogador;
+
+function sortearCarta() {
+  var numeroCartaMaquina = parseInt(Math.random() * cartas.length);
+  cartaMaquina = cartas[numeroCartaMaquina];
+
+  var numeroCartaJogador = parseInt(Math.random() * cartas.length);
+  while (numeroCartaMaquina == numeroCartaJogador) {
+    numeroCartaJogador = parseInt(Math.random() * cartas.length);
+  }
+  cartaJogador = cartas[numeroCartaJogador];
+  console.log(cartaJogador);
+
+  document.getElementById("btnSortear").disabled = true;
+  document.getElementById("btnJogar").disabled = false;
+
+  exibirCartaJogador();
+}
+
+function obtemAtributoSelecionado() {
+  var radioAtributos = document.getElementsByName("atributo");
+
+  for (var i = 0; i < radioAtributos.length; i++) {
+    if (radioAtributos[i].checked == true) {
+      return radioAtributos[i].value;
+    }
+  }
+}
+
+function jogar() {
+  let atributoSelecionado = obtemAtributoSelecionado();
+
+  let elementoResultado = document.getElementById("resultado");
+
+  let valorCartaJogador = cartaJogador.atributos[atributoSelecionado];
+  let valorCartaMaquina = cartaMaquina.atributos[atributoSelecionado];
+
+  if (valorCartaJogador > valorCartaMaquina) {
+    elementoResultado.innerHTML = `<p class="resultado-final">Venceu!</p>`;
+  } else if (valorCartaMaquina > valorCartaJogador) {
+    elementoResultado.innerHTML = `<p class="resultado-final">Perdeu!</p>`;
+  } else {
+    elementoResultado.innerHTML = `<p class="resultado-final">Empatou!</p>`;
+  }
+  document.getElementById("btnJogar").disabled = true;
+  exibirCartaMaquina();
+}
+
+function exibirCartaJogador() {
+  var divCartaJogador = document.getElementById("carta-jogador");
+  divCartaJogador.style.backgroundImage = `url(${cartaJogador.imagem})`;
+  var moldura =
+    '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style="width: inherit; height: inherit; position: absolute;">';
+  var tagHTML = "<div id='opcoes' class='carta-status'>";
+
+  var opcoesTexto = "";
+  for (var atributo in cartaJogador.atributos) {
+    opcoesTexto +=
+      "<input type='radio' name='atributo' value ='" +
+      atributo +
+      "'>" +
+      atributo +
+      " " +
+      cartaJogador.atributos[atributo] +
+      "<br>";
+  }
+  var nome = `<p class="carta-subtitle">${cartaJogador.nome}</p>`;
+
+  divCartaJogador.innerHTML = moldura + nome + tagHTML + opcoesTexto + "</div>";
+}
+
+function exibirCartaMaquina() {
+  var divCartaMaquina = document.getElementById("carta-maquina");
+  divCartaMaquina.style.backgroundImage = `url(${cartaMaquina.imagem})`;
+  var moldura =
+    '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style="width: inherit; height: inherit; position: absolute;">';
+  var tagHTML = "<div id='opcoes' class='carta-status'>";
+
+  var opcoesTexto = "";
+  for (var atributo in cartaMaquina.atributos) {
+    opcoesTexto +=
+      "<p type='text' name='atributo' value ='" +
+      atributo +
+      "'>" +
+      atributo +
+      " " +
+      cartaMaquina.atributos[atributo] +
+      "</p>";
+  }
+  var nome = `<p class="carta-subtitle">${cartaMaquina.nome}</p>`;
+
+  divCartaMaquina.innerHTML = moldura + nome + tagHTML + opcoesTexto + "</div>";
+}
+      </script>
+</body>
+</html>

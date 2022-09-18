@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> Imersão Dev Alura - Aula 01</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-title">
+      Calculadora de média</h1>
+      <p class="page-subtitle">
+      Descubra qual a sua média de nota de todas as provas!
+      </p>
+      <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-conversor-de-moedas.svg" class="page-logo" alt=""><br><br>
+      <label for="media">Insira sua 1º nota</label><br>
+  <input type="number" id="nota1" size="2" /><br>
+      <label for="media">Insira sua 2º nota</label><br>
+  <input type="number" id="nota2" size="2" /><br>
+      <label for="media">Insira sua 3º nota</label><br>
+  <input type="number" id="nota3" size="2" /><br>
+      <label for="media">Insira sua 4º nota</label><br>
+  <input type="number" id="nota4" size="2" /><br>
+      <button type="submit" onclick="Média()">Média</button>
+      <button type="submit" onclick="Resetar()">Resetar</button>
+      <h2 id="Resultado"></h2>
+    </div>
+    <a href="https://alura.com.br/" target="_blank">
+    <img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo">
+    </a>
+    <script>
+    function Média() {
+        var n1 = Number(document.getElementById("nota1").value);
+        var n2 = Number(document.getElementById("nota2").value);
+        var n3 = Number(document.getElementById("nota3").value);
+        var n4 = Number(document.getElementById("nota4").value);
+        var mediaFinal = (n1 + n2 + n3 + n4)/4
+        var resultadoFixado = (mediaFinal.toFixed(1))
+        if(resultadoFixado >= 7){
+        Resultado.innerHTML = `Sua média é ${resultadoFixado} \n Você está Aprovado!!!!!`;
+        }else{
+        Resultado.innerHTML = `Sua média é ${resultadoFixado} \n Você está Reprovado!!!!!`;
+     }
+    }
+
+    function Resetar(){
+        var n1 = Number(document.getElementById('nota1').value);
+        document.querySelector('#nota1').value = "";
+        var n1 = Number(document.getElementById('nota2').value);
+        document.querySelector('#nota2').value = "";
+        var n3 = Number(document.getElementById('nota3').value);
+        document.querySelector('#nota3').value = "";
+        var n4 = Number(document.getElementById('nota4').value);
+        document.querySelector('#nota4').value = "";
+    }
+    </script>
+  </body>
+</html>

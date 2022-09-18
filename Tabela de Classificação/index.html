@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Tabela de classificação</title>
+</head>
+<body>
+    <h1>Tabela de classificação</h1>
+  <h2> Campeonato brasileiro de CSGO</h2>
+  <table style="width:100%">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Vitórias</th>
+        <th>Derrotas</th>
+        <th>Pontos</th>
+        <th colspan=2>Ações</th>
+
+      </tr>
+    </thead>
+    <tbody id="tabelaTimes">
+  </table>
+  <script>
+    var zeroZeroNation = { nome: "00Nation", vitorias: 0, derrotas: 0, pontos: 0 };
+var mibr = { nome: "MIBR", vitorias: 0, derrotas: 0, pontos: 0 };
+var furia = { nome: "Furia", vitorias: 0, derrotas: 0, pontos: 0 };
+var godsent = { nome: "Godsent", vitorias: 0, derrotas: 0, pontos: 0 };
+var pain = { nome: "Pain", vitorias: 0, derrotas: 0, pontos: 0 };
+var teamOne = { nome: "Team One", vitorias: 0, derrotas: 0, pontos: 0 };
+var liquid = { nome: "Liquid", vitorias: 0, derrotas: 0, pontos: 0 };
+var bravos = { nome: "Bravos", vitorias: 0, derrotas: 0, pontos: 0 };
+var sharks = { nome: "Sharks", vitorias: 0, derrotas: 0, pontos: 0 };
+var paquetá = { nome: "Paquetá", vitorias: 0, derrotas: 0, pontos: 0 };
+var havan = { nome: "Havan", vitorias: 0, derrotas: 0, pontos: 0 };
+
+zeroZeroNation.pontos = calculaPontos(zeroZeroNation);
+mibr.pontos = calculaPontos(mibr);
+furia.pontos = calculaPontos(furia);
+godsent.pontos = calculaPontos(godsent);
+pain.pontos = calculaPontos(pain);
+teamOne.pontos = calculaPontos(teamOne);
+liquid.pontos = calculaPontos(liquid);
+bravos.pontos = calculaPontos(bravos);
+sharks.pontos = calculaPontos(sharks);
+paquetá.pontos = calculaPontos(paquetá);
+havan.pontos = calculaPontos(havan);
+
+function calculaPontos(time) {
+  var pontos = time.vitorias * 3;
+  return pontos;
+}
+
+var times = [
+  zeroZeroNation,
+  mibr,
+  furia,
+  godsent,
+  pain,
+  teamOne,
+  liquid,
+  bravos,
+  sharks,
+  paquetá,
+  havan
+];
+
+function exibeTimesNaTela(times) {
+  var elemento = "";
+  for (var i = 0; i < times.length; i++) {
+    elemento += "<tr><td>" + times[i].nome + "</td>";
+    elemento += "<td>" + times[i].vitorias + "</td>";
+    elemento += "<td>" + times[i].derrotas + "</td>";
+    elemento += "<td>" + times[i].pontos + "</td>";
+    elemento +=
+      "<td><button onClick='adicionarVitoria(" + i + ")'>Vitória</button></td>";
+    elemento +=
+      "<td><button onClick='adicionarDerrota(" + i + ")'>Derrota</button></td>";
+    elemento += "</tr>";
+  }
+  var tabelaTimes = document.getElementById("tabelaTimes");
+  tabelaTimes.innerHTML = elemento;
+}
+exibeTimesNaTela(times);
+
+function adicionarVitoria(i) {
+  var time = times[i];
+  time.vitorias++;
+  time.pontos = calculaPontos(time);
+  exibeTimesNaTela(times);
+}
+
+function adicionarDerrota(i) {
+  var time = times[i];
+  time.derrotas++;
+  exibeTimesNaTela(times);
+}
+  </script>
+</body>
+</html>
